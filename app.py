@@ -1,6 +1,13 @@
 import streamlit as st
 import time
 import random
+import chatbot as cb
+import funtions as ft
+
+bot = cb.chatBot()
+fun = ft.functions()
+functions_name = [fun.empresas_competidoras]
+bot.inicializar(functions_name)
 
 def createStream(text):
     for word in text.split():
@@ -27,7 +34,7 @@ if prompt:
     with st.chat_message("User"):
         st.write(prompt)
     st.session_state.messages.append(["User", prompt])
-    rand = random.randint(0,3)
+    bot_response = bot.get_response(prompt)
     with st.chat_message("Assistant"):
-        st.write_stream(createStream(temp_response[rand]))
-    st.session_state.messages.append(["Assistant", temp_response[rand]])
+        st.write_stream(createStream(bot_response))
+    st.session_state.messages.append(["Assistant", bot_response])

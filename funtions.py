@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 class functions():
 
@@ -16,6 +17,7 @@ class functions():
             database="railway",
             port=25264
         )
+        print(conn.is_connected())
         cursor = conn.cursor(dictionary=True)
         query = f"SELECT * FROM empresas_comp"
         cursor.execute(query)
