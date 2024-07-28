@@ -40,5 +40,4 @@ if prompt:
     bot_response = st.session_state.bot.get_response(prompt)
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
-        st.write(bot_response)
     st.session_state.messages.append(["Assistant", bot_response])
