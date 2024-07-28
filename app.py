@@ -3,6 +3,8 @@ import time
 import random
 import chatbot as cb
 import funtions as ft
+import google.generativeai.types.generation_types as gemError
+import google.api_core.exceptions as gooApiError
 
 def createStream(text):
     for word in text.split():
@@ -47,7 +49,17 @@ if prompt:
     with st.chat_message("User"):
         st.write(prompt)
     st.session_state.messages.append(["User", prompt])
-    bot_response = st.session_state.bot.get_response(prompt).text
+    try:
+        bot_response = st.session_state.bot.get_response(prompt).text
+    except gemError.StopCandidateException:
+        try:
+            bot_response = st.session_state.bot.get_response(prompt).text
+        except:
+            #mostrar error
+            pass
+    except gooApiError.ResourceExhausted:
+        #mosttrar error
+        pass
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
     st.session_state.messages.append(["Assistant", bot_response])
