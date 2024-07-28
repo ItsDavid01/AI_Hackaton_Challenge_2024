@@ -9,13 +9,15 @@ def createStream(text):
         yield word + " "
         time.sleep(0.1)
         
-bot = cb.chatBot()
-fun = ft.functions()
-functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
-bot.inicializar(functions_name)
+def intializeBot():
+    bot = cb.chatBot()
+    fun = ft.functions()
+    functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
+    bot.inicializar(functions_name)
+    return bot
 
 if "bot" not in st.session_state:
-    st.session_state.bot = bot
+    st.session_state.bot = intializeBot()
 
 st.title("Interactua con nosotros a través de nuestro chatbot personalizado")
 initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros vehículos, servicios, garantía y más"
@@ -30,6 +32,7 @@ with st.sidebar:
     resetChat = st.button("Limpiar")
     st.markdown(''':red[Recuerda que esta accion es irreversible]''')
     if resetChat:
+        st.session_state.bot = intializeBot()
         st.session_state.messages = [["Assistant", initial_response]]   
 
 if "messages" not in st.session_state:
@@ -45,7 +48,7 @@ if prompt:
     with st.chat_message("User"):
         st.write(prompt)
     st.session_state.messages.append(["User", prompt])
-    bot_response = st.session_state.bot.get_response(prompt)
+    bot_response = st.session_state.bot.get_response(prompt).text
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
     st.session_state.messages.append(["Assistant", bot_response])
