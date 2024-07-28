@@ -9,6 +9,9 @@ def createStream(text):
         yield word + " "
         time.sleep(0.1)
         
+def resetSessionState(initial_response):
+    st.session_state.messages = [["Assistant", initial_response]]
+    
 bot = cb.chatBot()
 fun = ft.functions()
 functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
@@ -32,7 +35,8 @@ with st.sidebar:
         st.markdown(''':red[Esta accion no se puede revertir]''')
         comfirmResetChat = st.button("Confirmar, limpiar chat")
         if comfirmResetChat:
-            st.session_state.messages = [["Assistant", initial_response]]
+            resetSessionState(initial_response)
+            
 
 if "messages" not in st.session_state:
     st.session_state.messages = [["Assistant", initial_response]]
