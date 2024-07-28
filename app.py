@@ -55,7 +55,7 @@ if prompt:
         try:
             bot_response = st.session_state.bot.get_response(prompt).text
         except:
-            #mostrar error
+            bot_response = "Lamento los incovenientes, por favor vuelve a intentar con otra pregunta"
             pass
     except gooApiError.ResourceExhausted:
         #mosttrar error
