@@ -60,6 +60,10 @@ if prompt:
     except gooApiError.ResourceExhausted:
         #mosttrar error
         pass
+    except:
+        #mostrar error
+        pass
+    
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
     st.session_state.messages.append(["Assistant", bot_response])
