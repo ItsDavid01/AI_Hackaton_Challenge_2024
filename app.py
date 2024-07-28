@@ -9,14 +9,11 @@ def createStream(text):
         yield word + " "
         time.sleep(0.1)
         
-def intializeBot():
-    bot = cb.chatBot()
-    fun = ft.functions()
-    functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
-    bot.inicializar(functions_name)
-    return bot
+bot = cb.chatBot()
+fun = ft.functions()
+functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
+bot.inicializar(functions_name)
 
-bot = intializeBot()
 if "bot" not in st.session_state:
     st.session_state.bot = bot
 
@@ -33,7 +30,6 @@ with st.sidebar:
     resetChat = st.button("Limpiar")
     st.markdown(''':red[Recuerda que esta accion es irreversible]''')
     if resetChat:
-        st.session_state.bot = intializeBot()
         st.session_state.messages = [["Assistant", initial_response]]   
 
 if "messages" not in st.session_state:
