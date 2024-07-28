@@ -4,6 +4,11 @@ import random
 import chatbot as cb
 import funtions as ft
 
+def createStream(text):
+    for word in text.split():
+        yield word + " "
+        time.sleep(0.1)
+        
 bot = cb.chatBot()
 fun = ft.functions()
 functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
@@ -12,17 +17,17 @@ bot.inicializar(functions_name)
 if "bot" not in st.session_state:
     st.session_state.bot = bot
 
-def createStream(text):
-    for word in text.split():
-        yield word + " "
-        time.sleep(0.1)
-
-st.title("Chat with us")
-initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros heviculos, servicios, garantía y mas"
+st.title("Interactua con nosotros a través de nuestro chatbot personalizado")
+initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros vehículos, servicios, garantía y más"
 temp_response = ["Si tienes más preguntas, aquí estoy para ayudarte!",
                 "Si necesitas ayuda adicional, no dudes en preguntar!",
                 "¿En qué más puedo ayudarte?",
                 "Ha sido un placer ayudarte, ¿alguna u otra pregunta?"]
+
+with st.sidebar:
+    resetChat = st.button("Limpiar Chat")
+    if resetChat:
+        st.session_state.messages = [["Assistant", initial_response]]
 
 if "messages" not in st.session_state:
     st.session_state.messages = [["Assistant", initial_response]]
