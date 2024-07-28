@@ -25,7 +25,7 @@ temp_response = ["Si tienes más preguntas, aquí estoy para ayudarte!",
                 "Ha sido un placer ayudarte, ¿alguna u otra pregunta?"]
 
 with st.sidebar:
-    st.subheader("Opciones adicionales")
+    st.subheader("Opciones adicionales", divider="gray")
     st.markdown("limpiar conversación")
     resetChat = st.button("Limpiar")
     st.markdown(''':red[Recuerda que esta accion es irreversible]''')
