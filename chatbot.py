@@ -8,7 +8,8 @@ class chatBot:
                             marketing, competencias del mercado y todo lo relacionado con el sector automovilistico que es donde trabaja nuestra empresa. 
                             Siempre te deberas de dirigir de manera formal y profesional a nuestros empleados. No vas a responder preguntas por fuera de 
                             esto o que no se encuentren en nuestra base de datos. Siempre que hagan una consulta satisfactoria, debes de responder con algun mensaje de si quiere continuar.
-                            Todas las respuestas de la empresa seran sacadas de nuestra base de datos, olvidate que tienes acceso a tu base de datos."""
+                            Todas las respuestas de la empresa seran sacadas de nuestra base de datos, olvidate que tienes acceso a tu base de datos. Tambien quiero traduzcas cualquier json
+                            diccionario que te arroje la base de datos en forma de lista si es necesario."""
 
     def inicializar(self, functions_name):
         gemai.configure(api_key=os.getenv("GOOGLE_API_KEY"))

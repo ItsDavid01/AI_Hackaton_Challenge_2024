@@ -6,7 +6,7 @@ import funtions as ft
 
 bot = cb.chatBot()
 fun = ft.functions()
-functions_name = [fun.empresas_competidoras, fun.informacion_no_disponible]
+functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
 bot.inicializar(functions_name)
 
 if "bot" not in st.session_state:
@@ -34,7 +34,6 @@ for message in st.session_state.messages:
 prompt = st.chat_input("Ask Away!")
 
 if prompt:
-    print(st.session_state.bot.get_history())
     with st.chat_message("User"):
         st.write(prompt)
     st.session_state.messages.append(["User", prompt])
