@@ -16,8 +16,9 @@ def intializeBot():
     bot.inicializar(functions_name)
     return bot
 
+bot = intializeBot()
 if "bot" not in st.session_state:
-    st.session_state.bot = intializeBot()
+    st.session_state.bot = bot
 
 st.title("Interactua con nosotros a través de nuestro chatbot personalizado")
 initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros vehículos, servicios, garantía y más"
@@ -33,11 +34,7 @@ with st.sidebar:
     st.markdown(''':red[Recuerda que esta accion es irreversible]''')
     if resetChat:
         st.session_state.bot = intializeBot()
-        st.session_state.messages = [["Assistant", initial_response]]
-        
-        
-            
-            
+        st.session_state.messages = [["Assistant", initial_response]]   
 
 if "messages" not in st.session_state:
     st.session_state.messages = [["Assistant", initial_response]]
