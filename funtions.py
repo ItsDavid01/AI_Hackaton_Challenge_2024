@@ -4,6 +4,19 @@ import datetime
 
 class functions():
 
+    def proyeccion_ventas(self):
+            
+            '''Funcion que retorna la proyeccion de ventas de la empresa'''
+    
+            query = f"SELECT fecha, valor FROM proyeccion"
+            data_list = self.get_data_from_db(query)
+            for item in data_list:
+                item['fecha'] = item['fecha'].strftime('%Y-%m')
+            text = ""
+            for item in data_list:
+                text += f"\n- Fecha: {item['fecha']}, Valor: {item['valor']}"
+            return text
+
     def empresas_competidoras(self):
 
         '''Funcion que retorna las empresas competidoras de la empresa'''
