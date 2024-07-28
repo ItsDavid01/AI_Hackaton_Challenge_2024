@@ -32,7 +32,6 @@ with st.sidebar:
     resetChat = st.button("Limpiar")
     st.markdown(''':red[Recuerda que esta accion es irreversible]''')
     if resetChat:
-        st.session_state.bot = intializeBot()
         st.session_state.messages = [["Assistant", initial_response]]   
 
 if "messages" not in st.session_state:
