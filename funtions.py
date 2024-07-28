@@ -4,12 +4,16 @@ import os
 class functions():
 
     def empresas_competidoras(self):
-        return f"{self.get_data_from_db()}"
+
+        '''Funcion que retorna las empresas competidoras de la empresa'''
+        
+        query = f"SELECT empresas_comp_name, ventas_anuales FROM empresas_comp"
+        return self.get_data_from_db(query)
     
     def informacion_no_disponible(self):
         return "Informacion no disponible"
 
-    def get_data_from_db(self, ventas_anuales = None):
+    def get_data_from_db(self, query):
         conn = mysql.connector.connect(
             host="viaduct.proxy.rlwy.net",
             user="root",
@@ -18,9 +22,6 @@ class functions():
             port=25264
         )
         cursor = conn.cursor(dictionary=True)
-        if (ventas_anuales):
-            query = f"SELECT * FROM empresas_comp WHERE ventas_anuales >= {ventas_anuales}"
-        query = f"SELECT * FROM empresas_comp"
         cursor.execute(query)
         result = cursor.fetchall()
         conn.close()

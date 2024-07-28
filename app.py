@@ -6,8 +6,11 @@ import funtions as ft
 
 bot = cb.chatBot()
 fun = ft.functions()
-functions_name = [fun.empresas_competidoras]
+functions_name = [fun.empresas_competidoras, fun.informacion_no_disponible]
 bot.inicializar(functions_name)
+
+if "bot" not in st.session_state:
+    st.session_state.bot = bot
 
 def createStream(text):
     for word in text.split():
@@ -31,10 +34,11 @@ for message in st.session_state.messages:
 prompt = st.chat_input("Ask Away!")
 
 if prompt:
+    print(st.session_state.bot.get_history())
     with st.chat_message("User"):
         st.write(prompt)
     st.session_state.messages.append(["User", prompt])
-    bot_response = bot.get_response(prompt)
+    bot_response = st.session_state.bot.get_response(prompt)
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
     st.session_state.messages.append(["Assistant", bot_response])
