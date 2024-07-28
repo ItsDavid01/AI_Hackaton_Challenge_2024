@@ -26,7 +26,8 @@ temp_response = ["Si tienes más preguntas, aquí estoy para ayudarte!",
 
 with st.sidebar:
     st.subheader("Opciones adicionales")
-    resetChat = st.button("Limpiar Chat")
+    st.markdown("limpiar conversación")
+    resetChat = st.button("Limpiar")
     st.markdown('''red:[Recuerda que esta accion es irreversible]''')
     if resetChat:
         st.session_state.messages = [["Assistant", initial_response]]
