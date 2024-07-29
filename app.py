@@ -56,13 +56,13 @@ if prompt:
         try:
             bot_response = st.session_state.bot.get_response(prompt).text
         except:
-            bot_response = "Lamento los incovenientes, por favor vuelve a intentar con otra pregunta"
+            bot_response = "Lamento los incovenientes, por favor vuelve a intentar con otra pregunta."
             pass
     except gooApiError.ResourceExhausted:
-        #mosttrar error
+        bot_response = "Lo sentimos, los recursos disponibles para procesar su solicitud se han agotado temporalmente. Por favor, intente nuevamente más tarde. Si el problema persiste, contacte al soporte técnico de Lurxon."
         pass
     except:
-        #mostrar error
+        bot_response = "No he entendido su solicitud, por favor intente nuevamente."
         pass
     
     with st.chat_message("Assistant"):
