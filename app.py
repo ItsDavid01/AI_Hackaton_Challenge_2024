@@ -57,7 +57,7 @@ if prompt:
         try:
             bot_response = st.session_state.bot.get_response(prompt).text
         except:
-            bot_response = "Lamento los incovenientes, por favor vuelve a intentar con otra pregunta."
+            bot_response = "Lamento los incovenientes, por favor podría ser más específico en su pregunta?"
             
     except gooApiError.ResourceExhausted:
         bot_response = "Lo sentimos, los recursos disponibles para procesar su solicitud se han agotado temporalmente. Por favor, intente nuevamente más tarde. Si el problema persiste, contacte al soporte técnico de Luxor."
