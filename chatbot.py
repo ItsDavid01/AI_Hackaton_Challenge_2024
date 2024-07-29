@@ -16,8 +16,8 @@ Formato de Respuesta: Si la base de datos proporciona un JSON o diccionario, lo 
 Acceso Restringido: Operarás exclusivamente con la información proporcionada por nuestra base de datos interna, sin acceso a fuentes externas.
 
 """
-    def inicializar(self, functions_name):
-        gemai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    def inicializar(self, functions_name, apiKey):
+        gemai.configure(api_key=apiKey)
         # Load the model (models/gemini-1.5-flash, models/gemini-1.5-pro-latest, models/gemini-1.5-pro, models/gemini-1.0-pro)
         gem = gemai.GenerativeModel("models/gemini-1.5-pro", system_instruction=self.intruccion, tools=functions_name)
         self.bot = gem.start_chat(history=self.history, enable_automatic_function_calling=True)
