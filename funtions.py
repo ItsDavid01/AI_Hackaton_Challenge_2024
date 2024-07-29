@@ -1,4 +1,5 @@
 import mysql.connector
+import streamlit as st
 
 class functions():
 
@@ -94,11 +95,11 @@ class functions():
 
     def get_data_from_db(self, query):
         conn = mysql.connector.connect(
-            host="viaduct.proxy.rlwy.net",
-            user="root",
-            password="ggDyJRwjffNWsZvbZZdiYzUOzomENxFd",
-            database="railway",
-            port=25264
+            host=st.secrets.HOST,
+            user=st.secrets.USER,
+            password=st.secrets.PASSWORD,
+            database=st.secrets.DATABASE,
+            port=st.secrets.PORT
         )
         cursor = conn.cursor(dictionary=True)
         cursor.execute(query)
