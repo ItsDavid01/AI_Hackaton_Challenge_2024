@@ -78,7 +78,8 @@ class functions():
         query = f"SELECT Marca, Modelo, Año, Precio, Stock, Color, Especificaciones FROM Vehiculos"
         data_list = self.get_data_from_db(query)
         for vehiculo in data_list:
-            vehiculo['Precio'] = f'${vehiculo['Precio']:,.2f}'
+            text = f"{vehiculo['Precio']:,.2f}"
+            vehiculo['Precio'] = f'${text}'
         return data_list
     
     def clientes_luxor(self):
