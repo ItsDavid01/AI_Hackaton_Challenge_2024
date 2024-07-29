@@ -22,7 +22,7 @@ def intializeBot():
 if "bot" not in st.session_state:
     st.session_state.bot = intializeBot()
 
-st.title("Asistente Virtual de Lurxon:")
+st.title("Asistente Virtual de Luxor:")
 st.subheader("Tu Guía Experta en Ventas y Marketing Automotriz")
 initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros vehículos, servicios, garantía y más"
 temp_response = ["Si tienes más preguntas, aquí estoy para ayudarte!",
