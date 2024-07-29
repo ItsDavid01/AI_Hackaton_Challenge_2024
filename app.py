@@ -14,7 +14,8 @@ def createStream(text):
 def intializeBot():
     bot = cb.chatBot()
     fun = ft.functions()
-    functions_name = [fun.empresas_competidoras, fun.ventas_empresa, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible]
+    functions_name = [fun.empresas_competidoras, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible, fun.ventas_generales_empresa_mensual, fun.detalles_ventas,
+                      fun.proyeccion_ventas, fun.vehiculos_luxor, fun.clientes_luxor]
     bot.inicializar(functions_name)
     return bot
 
@@ -59,11 +60,11 @@ if prompt:
             bot_response = "Lamento los incovenientes, por favor vuelve a intentar con otra pregunta."
             
     except gooApiError.ResourceExhausted:
-        bot_response = "Lo sentimos, los recursos disponibles para procesar su solicitud se han agotado temporalmente. Por favor, intente nuevamente más tarde. Si el problema persiste, contacte al soporte técnico de Lurxon."
+        bot_response = "Lo sentimos, los recursos disponibles para procesar su solicitud se han agotado temporalmente. Por favor, intente nuevamente más tarde. Si el problema persiste, contacte al soporte técnico de Luxor."
        
-    except:
+    except Exception as e: 
         bot_response = "Lo siento, algo salió mal. Por favor, inténtalo de nuevo."
-       
+        print(e)
     
     with st.chat_message("Assistant"):
         st.write_stream(createStream(bot_response))
