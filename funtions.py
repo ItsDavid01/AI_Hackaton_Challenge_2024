@@ -2,6 +2,13 @@ import mysql.connector
 import streamlit as st
 
 class functions():
+    
+    def __init__(self, host, user, password, database, port):
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
+        self.port = port
 
     def proyeccion_ventas(self):
             
@@ -95,11 +102,11 @@ class functions():
 
     def get_data_from_db(self, query):
         conn = mysql.connector.connect(
-            host=st.secrets.HOST,
-            user=st.secrets.USER,
-            password=st.secrets.PASSWORD,
-            database=st.secrets.DATABASE,
-            port=st.secrets.PORT
+            host = self.host,
+            user = self.user,
+            password = self.password,
+            database = self.database,
+            port = self.port
         )
         cursor = conn.cursor(dictionary=True)
         cursor.execute(query)
