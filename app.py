@@ -12,8 +12,8 @@ def createStream(text):
         time.sleep(0.1)
         
 def intializeBot():
-    bot = cb.chatBot(st.secrets.HOST, st.secrets.USER, st.secrets.PASSWORD, st.secrets.DATABASE, st.secrets.PORT)
-    fun = ft.functions()
+    bot = cb.chatBot()
+    fun = ft.functions(st.secrets.HOST, st.secrets.USER, st.secrets.PASSWORD, st.secrets.DATABASE, st.secrets.PORT)
     functions_name = [fun.empresas_competidoras, fun.modelos_mas_vendidos, fun.ventas_toyota, fun.informacion_no_disponible, fun.ventas_generales_empresa_mensual, fun.detalles_ventas,
                       fun.proyeccion_ventas, fun.vehiculos_luxor, fun.clientes_luxor]
     bot.inicializar(functions_name, st.secrets.GOOGLE_API_KEY)
