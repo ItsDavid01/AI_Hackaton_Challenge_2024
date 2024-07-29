@@ -21,7 +21,8 @@ def intializeBot():
 if "bot" not in st.session_state:
     st.session_state.bot = intializeBot()
 
-st.title("Interactua con nosotros a través de nuestro chatbot personalizado")
+st.title("Asistente Virtual de Lurxon:")
+st.subheader("Tu Guía Experta en Ventas y Marketing Automotriz")
 initial_response = "Bienvenido a Luxor, soy tu asistente virtual ¿En que puedo ayudarte? Pregunta acerca de nuestros vehículos, servicios, garantía y más"
 temp_response = ["Si tienes más preguntas, aquí estoy para ayudarte!",
                 "Si necesitas ayuda adicional, no dudes en preguntar!",
